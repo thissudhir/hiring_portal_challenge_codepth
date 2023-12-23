@@ -1,6 +1,6 @@
 import { Box, Button, Menu, MenuItem, Select } from "@mui/material";
 import React from "react";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   wrapper: {
