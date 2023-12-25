@@ -4,9 +4,9 @@ import { Typography, Link, Container } from "@mui/material";
 import { styled } from "@mui/system";
 
 const StyledFooter = styled("footer")({
-  marginTop: "20px",
+  // marginTop: "20px",
   padding: "20px 0",
-  backgroundColor: "#f0f0f0",
+  // backgroundColor: "#f0f0f0",
   textAlign: "center",
   position: "fixed",
   bottom: 0,

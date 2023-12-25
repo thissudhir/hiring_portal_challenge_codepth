@@ -40,7 +40,7 @@ const Login = () => {
       console.log("Logged in:", user);
       // Redirect to a different page upon successful login
       //   history.push("/dashboard");
-      navigate("/create_job_listing");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }

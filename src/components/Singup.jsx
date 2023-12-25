@@ -77,8 +77,8 @@ const Singup = () => {
         </form>
         {error && <Typography color="error">{error}</Typography>}
         <Typography>
-          Don't have an account?
-          {/* <Link to="/signup">Sign up</Link> */}
+          Already have an account?
+          <Link to="/login">Login up</Link>
         </Typography>
       </StyledPaper>
     </StyledContainer>

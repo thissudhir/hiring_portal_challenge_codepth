@@ -6,6 +6,7 @@ import {
   Outlet,
   createBrowserRouter,
   RouterProvider,
+  Routes,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
@@ -134,26 +135,36 @@ const App = () => {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Navbar openNewJobModal={() => setNewJobModal(true)} />
-      <JobModals
-        newJobModal={newJobModal}
-        postJob={postJob}
-        newCloseModal={() => setNewJobModal(false)}
-      />
-      <Grid container justifyContent={"center"}>
-        <Grid item xs={10}>
-          <Searchbar />
-          {loading ? (
-            <Box display={"flex"} justifyContent={"center"}>
-              <CircularProgress />
-            </Box>
-          ) : (
-            jobs.map((job) => <JobCards key={job.id} {...job} />)
-          )}
-
-          {/* <JobCards /> */}
+      <Router>
+        <Navbar openNewJobModal={() => setNewJobModal(true)} />
+        <JobModals
+          newJobModal={newJobModal}
+          postJob={postJob}
+          newCloseModal={() => setNewJobModal(false)}
+        />
+        <Grid container justifyContent={"center"}>
+          <Grid item xs={10}>
+            <Searchbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  loading ? (
+                    <Box display={"flex"} justifyContent={"center"}>
+                      <CircularProgress />
+                    </Box>
+                  ) : (
+                    jobs.map((job) => <JobCards key={job.id} {...job} />)
+                  )
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Singup />} />
+            </Routes>
+          </Grid>
         </Grid>
-      </Grid>
+        <Footer />
+      </Router>
     </ThemeProvider>
   );
 };
