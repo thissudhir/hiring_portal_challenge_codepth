@@ -35,9 +35,9 @@ const Login = () => {
         email,
         password
       );
-      console.log(email);
+      // console.log(email);
       const user = userCredential.user;
-      console.log("Logged in:", user);
+      // console.log("Logged in:", user);
       // Redirect to a different page upon successful login
       //   history.push("/dashboard");
       navigate("/");
