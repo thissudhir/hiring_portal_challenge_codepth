@@ -1,7 +1,15 @@
 // Header.jsx
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, Box, Grid } from "@mui/material";
-import { styled } from "@mui/system";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  Grid,
+  styled,
+} from "@mui/material";
+// import {  } from "@mui/system";
 
 import { Link } from "react-router-dom";
 
@@ -15,14 +23,19 @@ const StyledNavbar = styled("div")({
   width: "100%",
 });
 
-const Navbar = () => {
+const Navbar = ({ openNewJobModal }) => {
   return (
     <Box bgcolor={"secondary.main"} color={"white"} py={10}>
       <Grid container justifyContent={"center"}>
         <Grid item xs={10}>
           <Box display={"flex"} justifyContent={"space-between"}>
             <Typography variant="h4">Job Listing</Typography>
-            <Button variant="contained" color="primary" disableElevation>
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
+              onClick={openNewJobModal}
+            >
               Post a job
             </Button>
           </Box>

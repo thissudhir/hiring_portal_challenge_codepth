@@ -1,62 +1,57 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
-import { makeStyles } from "@mui/styles";
+import { Box, Button, Grid, styled, Typography } from "@mui/material";
+import { differenceInMinutes } from "date-fns";
 
-const skills = ["javascript", "react", "node"];
+const Wrapper = styled(Box)(({ theme }) => ({
+  border: "1px solid #e8e8e8",
+  cursor: "pointer",
+  transition: ".3s",
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    border: "1px solid #e8e8e8",
-    cursor: "pointer",
-    transition: ".3s",
-
-    "&:hover": {
-      boxShadow: "0px 5px 25px rgba(0,0,0,0.1)",
-      borderLeft: "6px solid #4D64E4",
-    },
-  },
-  companyName: {
-    fontSize: "13.5px",
-    backgroundColor: "#18E1D9",
-    padding: "6px",
-    borderRadius: "5px",
-    display: "inline-block",
-    fontWeight: 600,
-  },
-  skillBox: {
-    marginRight: "4px",
-    padding: "8px",
-    borderRadius: "5px",
-    fontSize: "14.5",
-    transition: ".3s",
-    fontWeight: 600,
-    backgroundColor: "#0B0B15",
-    color: "#fff",
+  "&:hover": {
+    boxShadow: "0px 5px 25px rgba(0,0,0,0.1)",
+    borderLeft: "6px solid #4D64E4",
   },
 }));
 
-const JobCards = () => {
-  const classes = useStyles();
+const CompanyName = styled(Typography)({
+  fontSize: "13.5px",
+  backgroundColor: "#18E1D9",
+  padding: "6px",
+  borderRadius: "5px",
+  display: "inline-block",
+  fontWeight: 600,
+});
+
+const SkillBox = styled(Grid)({
+  marginRight: "4px",
+  padding: "8px",
+  borderRadius: "5px",
+  fontSize: "14.5",
+  transition: ".3s",
+  fontWeight: 600,
+  backgroundColor: "#0B0B15",
+  color: "#fff",
+});
+
+const JobCards = (props) => {
   return (
-    <Box p={2} className={classes.wrapper}>
+    <Wrapper p={2}>
       <Grid container alignItems={"center"}>
         <Grid item xs>
-          <Typography variant="subtitle1">Frontend </Typography>
-          <Typography className={classes.companyName} variant="subtitle2">
-            Microsoft{" "}
-          </Typography>
+          <Typography variant="subtitle1">{props.title} </Typography>
+          <CompanyName variant="subtitle2">{props.companyName}</CompanyName>
         </Grid>
         <Grid item container xs>
-          {skills.map((skill) => (
-            <Grid key={skill} item className={classes.skillBox}>
+          {props.skills.map((skill) => (
+            <SkillBox key={skill} item>
               {skill}
-            </Grid>
+            </SkillBox>
           ))}
         </Grid>
         <Grid item container xs direction={"column"} alignItems={"flex-end"}>
           <Grid item>
             <Typography variant="caption">
-              277 min ago | Full Time | Remote
+              {differenceInMinutes(Date.now(), props.postedOn)} min ago |{" "}
+              {props.type} | {props.location}
             </Typography>
           </Grid>
           <Grid item>
@@ -64,7 +59,7 @@ const JobCards = () => {
           </Grid>
         </Grid>
       </Grid>
-    </Box>
+    </Wrapper>
   );
 };
 
